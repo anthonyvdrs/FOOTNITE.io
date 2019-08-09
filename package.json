@@ -1,0 +1,25 @@
+{
+  "name": "footnite.io",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon start server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonyvdrs/FOOTNITE.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonyvdrs/FOOTNITE.io/issues"
+  },
+  "homepage": "https://github.com/anthonyvdrs/FOOTNITE.io#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "phaser": "^3.19.0",
+    "socket.io": "^2.2.0"
+  }
+}
