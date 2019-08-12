@@ -12,11 +12,12 @@ const config = {
   const game = new Phaser.Game(config);
   
   function preload() {
-    game.load.image('fond', "./image/FootNite-proto.png");
-  }
+    this.load.image('fond', 'assets/image/FootNite-proto600x600.png');
+  } 
+
   function create() {
     console.log(this)
-    this.add.image(0, 0, 'fond')
+    this.add.image(300, 300, 'fond');
   }
   
   function update() {
