@@ -34,4 +34,10 @@ const config = {
   function update() {
     
   }
-  
+
+
+///////////////
+// SOCKET.IO //
+///////////////
+
+const socket = io();
