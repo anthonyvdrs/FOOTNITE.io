@@ -52,16 +52,16 @@ function update() {
 
   //set velocity for each direction
   if (cursors.up.isDown) {
-    players[1].setVelocity(0, -100);
+    players[1].setVelocity(0, -200);
   }
   if (cursors.down.isDown) {
-    players[1].setVelocity(0, 100);
+    players[1].setVelocity(0, 200);
   }
   if (cursors.left.isDown) {
-    players[1].setVelocity(-100, 0);
+    players[1].setVelocity(-200, 0);
   }
   if (cursors.right.isDown) {
-    players[1].setVelocity(100, 0);
+    players[1].setVelocity(200, 0);
   }
 
 }
