@@ -1,7 +1,7 @@
 const port = 3000;
 const express = require('express');
 const app = express();
-const server = app.listen(port); // listen on port 3000
+const server = app.listen(port, () => console.log(`Server running on port ${port}`)); // listen on port 3000
 const io = require('socket.io')(server);
 
 //middleware
