@@ -13,7 +13,7 @@ const config = {
   
   function preload() {
     this.load.image('fond', 'assets/image/FootNite-proto600x600.png');
-    this.load.image('ballon', 'assets/image/ballon.png');
+    this.load.image('ballon', 'assets/image/ballon45x45.png');
     this.load.image('blue', 'assets/image/playerBlue38x38.png');
     this.load.image('purple', 'assets/image/playerPurple38x38.png');
     this.load.image('red', 'assets/image/playerRed38x38.png');
