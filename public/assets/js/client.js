@@ -52,23 +52,25 @@ function create() {
 
 function update() {
   //stop velocity when not pressing buttons
-  players[1].setVelocity(0, 0);
+  let x = 0;
+  let y = 0;
+  players[1].setVelocity(x, y);
 
   //set velocity for each direction
-  if (cursors.up.isDown) {
-    players[1].setVelocity(0, -200);
-  }
-  if (cursors.down.isDown) {
-    players[1].setVelocity(0, 200);
-  }
   if (cursors.left.isDown) {
-    players[1].setVelocity(-200, 0);
+    players[1].setVelocity(x-=100, y);
   }
-  if (cursors.right.isDown) {
-    players[1].setVelocity(200, 0);
+  else if (cursors.right.isDown) {
+    players[1].setVelocity(x+=100, y);
   }
-
+  if (cursors.up.isDown) {
+    players[1].setVelocity(x, y-=100);
+  }
+  else if (cursors.down.isDown) {
+    players[1].setVelocity(x, y+=100);
+  }
 }
+
 
 
 ///////////////
