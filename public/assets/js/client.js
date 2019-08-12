@@ -44,6 +44,9 @@ function create() {
 
   //setup cursors
   cursors = this.input.keyboard.createCursorKeys();
+
+  //setup collision
+  this.physics.add.collider(players, ballon);
 }
 
 function update() {
