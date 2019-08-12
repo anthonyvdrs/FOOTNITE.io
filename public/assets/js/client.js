@@ -47,6 +47,7 @@ function create() {
 
   //setup collision
   this.physics.add.collider(players, ballon);
+  this.physics.add.collider(players, players);
 }
 
 function update() {
