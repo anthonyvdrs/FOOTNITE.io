@@ -11,3 +11,13 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
   res.sendFile('public/index.html');
 })
+
+//socket.io
+io.on('connection', socket => {
+  console.log(`user ${socket.id} connected`);
+
+  socket.on('disconnect', () => {
+    console.log(`user ${socket.id} disconnected`);
+  })
+  
+})
