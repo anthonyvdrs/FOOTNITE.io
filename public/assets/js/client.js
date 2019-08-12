@@ -6,6 +6,7 @@ const config = {
     default: 'arcade',
     arcade: {}
   },
+  
   scene: {
     preload: preload,
     create: create,
@@ -48,6 +49,9 @@ function create() {
   //setup collision
   this.physics.add.collider(players, ballon);
   this.physics.add.collider(players, players);
+  ballon.body.setAllowDrag(true);
+ballon.body.setDrag(100, 100);
+ballon.body.setFriction(0.5, 0.5);
 }
 
 function update() {
@@ -58,17 +62,18 @@ function update() {
 
   //set velocity for each direction
   if (cursors.left.isDown) {
-    players[1].setVelocity(x-=100, y);
+    players[1].setVelocity(x-=150, y);
   }
   else if (cursors.right.isDown) {
-    players[1].setVelocity(x+=100, y);
+    players[1].setVelocity(x+=150, y);
   }
   if (cursors.up.isDown) {
-    players[1].setVelocity(x, y-=100);
+    players[1].setVelocity(x, y-=150);
   }
   else if (cursors.down.isDown) {
-    players[1].setVelocity(x, y+=100);
+    players[1].setVelocity(x, y+=150);
   }
+  
 }
 
 
