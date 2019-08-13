@@ -20,4 +20,7 @@ io.on('connection', socket => {
     console.log(`user ${socket.id} disconnected`);
   })
   
+  socket.on('playerPosition', data => {
+    console.log(data.posX);
+  })
 })

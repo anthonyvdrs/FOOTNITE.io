@@ -21,11 +21,10 @@ const gameScene = () => {
   };
 
   const game = new Phaser.Game(config);
-  const players = {};
-  let ballon = {};
   let cursors
   let ball;
   let player;
+  let player2;
 
   function preload() {
     this.load.image('fond', 'assets/image/FootNite-proto600x600.png');
@@ -70,7 +69,13 @@ const gameScene = () => {
     } else if (cursors.down.isDown) {
       player.setVelocity(x, y += 3);
     }
+    socket.emit('playerPosition', () => {
+      posX: player.x;
+      posY: player.y;
+    });
   }
+
+
 }
 gameScene();
 
