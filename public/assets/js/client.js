@@ -45,6 +45,19 @@ const gameScene = () => {
     ballon.body.collideWorldBounds = true;
     ballon.body.bounce.setTo(1, 1);
 
+    //setup collision
+    this.physics.add.collider(players, ballon);
+    this.physics.add.collider(players, players);
+
+    ballon.body.setAllowDrag(true);
+    ballon.body.setDrag(100, 100);
+    ballon.body.setFriction(0.5, 0.5);
+    ballon.body.setCircle(22, 0, 0);
+    players[0].body.setCircle(19);
+    players[1].body.setCircle(19);
+    players[2].body.setCircle(19);
+    players[3].body.setCircle(19);
+
     //setup cursors
     cursors = this.input.keyboard.createCursorKeys();
 
@@ -57,6 +70,7 @@ const gameScene = () => {
     ballon.body.setDrag(200, 200);
     ballon.body.setFriction(0.5, 0.5);
   }
+
 
   function update() {
     //stop velocity when not pressing buttons
