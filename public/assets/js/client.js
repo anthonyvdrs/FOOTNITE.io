@@ -5,7 +5,9 @@ const gameScene = () => {
     height: 600,
     physics: {
       default: 'arcade',
-      arcade: {}
+      arcade: {
+        debug: true
+      }
     },
 
     scene: {
