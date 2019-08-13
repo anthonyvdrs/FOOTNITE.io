@@ -69,6 +69,9 @@ const gameScene = () => {
     ballon.body.setAllowDrag(true);
     ballon.body.setDrag(200, 200);
     ballon.body.setFriction(0.5, 0.5);
+
+    // hitbox ballon
+    ballon.setSize(25, 25, true);
   }
 
 
