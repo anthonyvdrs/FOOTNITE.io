@@ -68,15 +68,30 @@ const gameScene = () => {
     player.setVelocity(x, y);
 
     //set velocity for each direction
-    if (cursors.left.isDown) {
-      player.setVelocity(x -= 3, y);
-    } else if (cursors.right.isDown) {
-      player.setVelocity(x += 3, y);
+    
+    if (cursors.up.isDown && cursors.left.isDown){
+      player.setVelocity(x=-1.5*(Math.sqrt(2)), y =- 1.5*(Math.sqrt(2)));
     }
-    if (cursors.up.isDown) {
-      player.setVelocity(x, y -= 3);
-    } else if (cursors.down.isDown) {
-      player.setVelocity(x, y += 3);
+    else if (cursors.up.isDown && cursors.right.isDown){
+      player.setVelocity(x=1.5*(Math.sqrt(2)), y = -1.5*(Math.sqrt(2)));
+    }
+    else if (cursors.down.isDown && cursors.left.isDown){
+      player.setVelocity(x= -1.5*(Math.sqrt(2)), y = 1.5*(Math.sqrt(2)));
+    }
+    else if (cursors.down.isDown && cursors.right.isDown){
+      player.setVelocity(x=1.5*(Math.sqrt(2)), y = 1.5*(Math.sqrt(2)));
+    }
+    else if (cursors.left.isDown) {
+      player.setVelocity(x = -3, y);
+    } 
+    else if (cursors.right.isDown) {
+      player.setVelocity(x = 3, y);
+    }
+    else if (cursors.up.isDown) {
+      player.setVelocity(x, y = -3);
+    } 
+    else if (cursors.down.isDown) {
+      player.setVelocity(x, y = 3);
     }
   }
 }
