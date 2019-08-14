@@ -20,4 +20,10 @@ io.on('connection', socket => {
     console.log(`user ${socket.id} disconnected`);
   })
   
+  socket.on('playerPosition', data => {
+    socket.emit('player2Position', {
+      posX: data.posX,
+      posY: data.posY
+    })
+  })
 })
