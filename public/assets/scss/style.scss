@@ -1,0 +1,113 @@
+// *{
+//     margin: 0; // enlevé les margins naturels des navigateurs
+// };
+// body{
+//     background: linear-gradient(180deg, rgba(36,73,103,1) 19%, rgba(53,39,38,1) 100%);
+//     margin-top: 10%;
+//     overflow: hidden;
+// }
+// .menu{
+//     margin-top: 10%;
+//     font-family: sans-serif;
+//     height: 100vh; // pour que le body s'accorde sur l'entièreté de la page
+//     margin: auto auto;
+//     text-align: center;
+//     img{
+//         width: 500px;
+//         margin-bottom: 1%;
+//     }
+//     .choose-team{
+//         background-color: #1A2125;
+//         width: 450px;
+//         padding: 5px 10px 10px 10px;
+//         border-radius: 10px;
+//         text-align: center;
+//         margin: 0 auto;
+//         h1{
+//             color: white;
+//             padding: 5px;
+//             border-bottom: solid 3px #c13535;
+//             margin-bottom: 10px;
+//         }
+//         .cteam{
+//             background-color: #CCCCCC;
+//             padding: 5px;
+//             border-radius: 5px;
+//             display: flex;
+//             justify-content: space-around;
+//             label{
+//                 color: white;
+//             }
+//             .blue{
+//                 background-color: #0086ff;
+//                 border-radius: 5px;
+//                 width: 90px;
+//                 padding: 5px 15px;
+//                 font: {
+//                     weight: 700;
+//                     size: 15px;
+//                 };
+//                 border: none;
+//                 color: white;
+//                 cursor: pointer;
+//             }
+//             .purple{
+//                 background-color: #ba00ff;
+//                 border-radius: 5px;
+//                 width: 90px;
+//                 padding: 5px 15px;
+//                 font: {
+//                     weight: 700;
+//                     size: 15px;
+//                 };
+//                 border: none;
+//                 color: white;
+//                 cursor: pointer;
+//             }
+//             .red{
+//                 background-color: #ff0000;
+//                 border-radius: 5px;
+//                 width: 90px;
+//                 padding: 5px 15px;
+//                 font: {
+//                     weight: 700;
+//                     size: 15px;
+//                 };
+//                 border: none;
+//                 color: white;
+//                 cursor: pointer;
+//             }
+//             .yellow{
+//                 background-color: #ffff00;
+//                 border-radius: 5px;
+//                 width: 90px;
+//                 padding: 5px 15px;
+//                 font: {
+//                     weight: 700;
+//                     size: 15px;
+//                 };
+//                 border: none;
+//                 cursor: pointer;
+//             }
+//         }
+//         .start-button{
+//             margin-top: 5%;
+//             .start{
+//                 color: white;
+//                 border: none;
+//                 background-color: #ff1854;
+//                 border-radius: 2px;
+//                 font: {
+//                     weight: 550;
+//                     size: 15px;
+//                 };
+//                 width: 90px;
+//                 padding: 5px 15px;
+//                 cursor: pointer;
+//                 /*&:hover{
+//                     color: black;
+//                 }*/
+//             }
+//         }
+//     }
+// }

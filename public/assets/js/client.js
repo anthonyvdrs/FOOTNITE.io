@@ -21,11 +21,10 @@ const gameScene = () => {
   };
 
   const game = new Phaser.Game(config);
-  const players = {};
-  let ballon = {};
   let cursors
   let ball;
   let player;
+  let player2;
 
   function preload() {
     this.load.image('fond', 'assets/image/FootNite-proto600x600.png');
@@ -62,23 +61,48 @@ const gameScene = () => {
 
 
   function update() {
+    socket.on('player2Position', data => {
+      player2.x = data.posX + 100;
+      player2.y = data.posY;
+    })
     //stop velocity when not pressing buttons
     let x = 0;
     let y = 0;
     player.setVelocity(x, y);
 
     //set velocity for each direction
-    if (cursors.left.isDown) {
-      player.setVelocity(x -= 3, y);
-    } else if (cursors.right.isDown) {
-      player.setVelocity(x += 3, y);
+    
+    if (cursors.up.isDown && cursors.left.isDown){
+      player.setVelocity(x=-1.5*(Math.sqrt(2)), y =- 1.5*(Math.sqrt(2)));
     }
-    if (cursors.up.isDown) {
-      player.setVelocity(x, y -= 3);
-    } else if (cursors.down.isDown) {
-      player.setVelocity(x, y += 3);
+    else if (cursors.up.isDown && cursors.right.isDown){
+      player.setVelocity(x=1.5*(Math.sqrt(2)), y = -1.5*(Math.sqrt(2)));
     }
+    else if (cursors.down.isDown && cursors.left.isDown){
+      player.setVelocity(x= -1.5*(Math.sqrt(2)), y = 1.5*(Math.sqrt(2)));
+    }
+    else if (cursors.down.isDown && cursors.right.isDown){
+      player.setVelocity(x=1.5*(Math.sqrt(2)), y = 1.5*(Math.sqrt(2)));
+    }
+    else if (cursors.left.isDown) {
+      player.setVelocity(x = -3, y);
+    } 
+    else if (cursors.right.isDown) {
+      player.setVelocity(x = 3, y);
+    }
+    else if (cursors.up.isDown) {
+      player.setVelocity(x, y = -3);
+    } 
+    else if (cursors.down.isDown) {
+      player.setVelocity(x, y = 3);
+    }
+    socket.emit('playerPosition', {
+      posX: player.x,
+      posY: player.y
+    });
   }
+
+
 }
 gameScene();
 
