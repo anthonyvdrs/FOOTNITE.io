@@ -27,7 +27,7 @@ const gameScene = () => {
   let player2;
 
   function preload() {
-    this.load.image('fond', 'assets/image/FootNite-proto600x600.png');
+    this.load.image('fond', 'assets/image/FootNite-protoNeon.png');
     this.load.image('sheet', 'assets/image/testgoal.png', 'assets/goal-shapes.json');
     this.load.image('sheet1', 'assets/image/bluegoal.png', 'assets/goal-shapes.json');
     this.load.image('sheet2', 'assets/image/purplegoal.png', 'assets/goal-shapes.json');
