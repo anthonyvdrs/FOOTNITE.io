@@ -21,6 +21,9 @@ io.on('connection', socket => {
   })
   
   socket.on('playerPosition', data => {
-    console.log(data.posX);
+    socket.emit('player2Position', {
+      posX: data.posX,
+      posY: data.posY
+    })
   })
 })
