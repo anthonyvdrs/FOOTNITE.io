@@ -28,23 +28,34 @@ const gameScene = () => {
 
   function preload() {
     this.load.image('fond', 'assets/image/FootNite-proto600x600.png');
-    this.load.image('goalred', 'assets/image/testgoal.png');
-    this.load.image('goalblue', 'assets/image/bluegoal.png');
-    this.load.image('goalpurple', 'assets/image/purplegoal.png');
-    this.load.image('goalyellow', 'assets/image/yellowgoal.png');
+    this.load.image('sheet', 'assets/image/testgoal.png', 'assets/goal-shapes.json');
+    this.load.image('sheet1', 'assets/image/bluegoal.png', 'assets/goal-shapes.json');
+    this.load.image('sheet2', 'assets/image/purplegoal.png', 'assets/goal-shapes.json');
+    this.load.image('sheet3', 'assets/image/yellowgoal.png', 'assets/goal-shapes.json');
     this.load.image('ballon', 'assets/image/ballon45x45.png');
     this.load.image('blue', 'assets/image/playerBlue38x38.png');
     this.load.image('purple', 'assets/image/playerPurple38x38.png');
     this.load.image('red', 'assets/image/playerRed38x38.png');
     this.load.image('yellow', 'assets/image/playerYellow38x38.png');
+
+    this.load.json('shapes', 'assets/goal-shapes.json');
   }
 
   function create() {
+const shapes = this.cache.json.get('shapes');
+
+this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
+
+
+
     this.add.image(300, 300, 'fond');
-    this.add.image(50, 50, 'goalred');
-    this.add.image(550, 50, 'goalblue');
-    this.add.image(550, 550, 'goalpurple');
-    this.add.image(50, 550, 'goalyellow');
+    this.matter.add.sprite(40, 40, 'sheet', 'testgoal', {shape: shapes.testgoal});
+    //this.add.image(550, 50, 'goalblue');
+    this.matter.add.sprite(560, 40, 'sheet1', 'bluegoal', {shape: shapes.bluegoal});
+    //this.add.image(550, 550, 'goalpurple');
+    this.matter.add.sprite(560, 560, 'sheet2', 'purplegoal', {shape: shapes.purplegoal});
+    //this.add.image(50, 550, 'goalyellow');
+    this.matter.add.sprite(40, 560, 'sheet3', 'yellowgoal', {shape: shapes.yellowgoal});
     this.matter.world.setBounds(0, 0, 600, 600, 32, true, true, true, true);
     ball = this.matter.add.image(300, 300, 'ballon');
     player = this.matter.add.image(100, 100, 'blue');
