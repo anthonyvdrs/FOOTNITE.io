@@ -43,7 +43,6 @@ io.on('connection', socket => {
       default:
         break;
     }
-    console.table(players);
     socket.emit('playersListUpdate', {
       players: players
     })
@@ -82,6 +81,13 @@ io.on('connection', socket => {
     socket.broadcast.emit('receivePos', {
       x4: data.posX,
       y4: data.posY
+    })
+  })
+
+  socket.on('sendingBall', data => {
+    socket.broadcast.emit('receiveBall', {
+      x : data.x,
+      y : data.y
     })
   })
 

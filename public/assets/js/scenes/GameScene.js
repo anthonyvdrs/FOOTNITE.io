@@ -25,7 +25,7 @@ class GameScene extends Phaser.Scene {
         let music = this.sound.add('party');
         music.loop = true;
         music.play();
-        
+
         const shapes = this.cache.json.get('shapes');
 
         this.add.image(300, 300, 'fond');
@@ -79,7 +79,13 @@ class GameScene extends Phaser.Scene {
                 posX: player[myPlace].x,
                 posY: player[myPlace].y
             })
-        }, 50)
+            if (myPlace == 0) {
+                socket.emit('sendingBall', {
+                    x: ball.x,
+                    y: ball.y
+                })
+            }
+        }, 24)
 
         socket.on('receivePos', data => {
             if (myPlace == 0) {
@@ -111,6 +117,11 @@ class GameScene extends Phaser.Scene {
                 player[2].x = data.x3;
                 player[2].y = data.y3;
             }
+
+            socket.on('receiveBall', data => {
+                ball.x = data.x, 
+                ball.y = data.y
+            })
         })
     }
 
