@@ -1,8 +1,3 @@
-let cursors;
-let ball;
-let player;
-let player2;
-
 class GameScene extends Phaser.Scene {
     constructor() {
         super("playGame");
@@ -26,8 +21,6 @@ class GameScene extends Phaser.Scene {
     create() {
         const shapes = this.cache.json.get('shapes');
 
-        this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
-
         this.add.image(300, 300, 'fond');
         this.matter.add.sprite(40, 40, 'sheet', 'testgoal', {
             shape: shapes.testgoal
@@ -44,53 +37,101 @@ class GameScene extends Phaser.Scene {
         this.matter.add.sprite(40, 560, 'sheet3', 'yellowgoal', {
             shape: shapes.yellowgoal
         });
+
         this.matter.world.setBounds(0, 0, 600, 600, 32, true, true, true, true);
-        ball = this.matter.add.image(300, 300, 'ballon');
-        player = this.matter.add.image(100, 100, 'blue');
+
+        ball = this.matter.add.sprite(300, 300, 'ballon');
         ball.setCircle();
         ball.setFriction(0.005);
         ball.setBounce(1);
-        player.setCircle();
 
-        player2 = this.matter.add.image(400, 400, 'red');
-        player2.setCircle();
-        cursors = this.input.keyboard.createCursorKeys();
-        cursors = this.input.keyboard.addKeys(
-            {z:Phaser.Input.Keyboard.KeyCodes.Z,
-            s:Phaser.Input.Keyboard.KeyCodes.S,
-            q:Phaser.Input.Keyboard.KeyCodes.Q,
-            d:Phaser.Input.Keyboard.KeyCodes.D,
-            up:Phaser.Input.Keyboard.KeyCodes.UP,
-            down:Phaser.Input.Keyboard.KeyCodes.DOWN,
-            left:Phaser.Input.Keyboard.KeyCodes.LEFT,
-            right:Phaser.Input.Keyboard.KeyCodes.RIGHT});
-        
+        player[0] = this.matter.add.sprite(500, 100, 'blue');
+        player[1] = this.matter.add.sprite(500, 500, 'purple');
+        player[2] = this.matter.add.sprite(100, 100, 'red');
+        player[3] = this.matter.add.sprite(100, 500, 'yellow');
+
+        player[0].setCircle();
+        player[1].setCircle();
+        player[2].setCircle();
+        player[3].setCircle();
+
+
+        cursors = this.input.keyboard.addKeys({
+            z: Phaser.Input.Keyboard.KeyCodes.Z,
+            s: Phaser.Input.Keyboard.KeyCodes.S,
+            q: Phaser.Input.Keyboard.KeyCodes.Q,
+            d: Phaser.Input.Keyboard.KeyCodes.D,
+            up: Phaser.Input.Keyboard.KeyCodes.UP,
+            down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+            left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+            right: Phaser.Input.Keyboard.KeyCodes.RIGHT
+        });
+
+        setInterval(() => {
+            socket.emit(`sendingPos${myPlace}`, {
+                posX: player[myPlace].x,
+                posY: player[myPlace].y
+            })
+        }, 50)
+
+        socket.on('receivePos', data => {
+            if (myPlace == 0) {
+                player[1].x = data.x2;
+                player[1].y = data.y2;
+                player[2].x = data.x3;
+                player[2].y = data.y3;
+                player[3].x = data.x4;
+                player[3].y = data.y4;
+            } else if (myPlace == 1) {
+                player[0].x = data.x1;
+                player[0].y = data.y1;
+                player[2].x = data.x3;
+                player[2].y = data.y3;
+                player[3].x = data.x4;
+                player[3].y = data.y4;
+            } else if (myPlace == 2) {
+                player[0].x = data.x1;
+                player[0].y = data.y1;
+                player[1].x = data.x2;
+                player[1].y = data.y2;
+                player[3].x = data.x4;
+                player[3].y = data.y4;
+            } else if (myPlace == 3) {
+                player[0].x = data.x1;
+                player[0].y = data.y1;
+                player[1].x = data.x2;
+                player[1].y = data.y2;
+                player[2].x = data.x3;
+                player[2].y = data.y3;
+            }
+        })
     }
 
     update() {
+
         //stop velocity when not pressing buttons
         let x = 0;
         let y = 0;
-        player.setVelocity(x, y);
+        player[myPlace].setVelocity(x, y);
 
         //set velocity for each direction
 
         if (cursors.up.isDown && cursors.left.isDown || cursors.z.isDown && cursors.q.isDown) {
-            player.setVelocity(x = -1.5 * (Math.sqrt(2)), y = -1.5 * (Math.sqrt(2)));
+            player[myPlace].setVelocity(x = -1.5 * (Math.sqrt(2)), y = -1.5 * (Math.sqrt(2)));
         } else if (cursors.up.isDown && cursors.right.isDown || cursors.z.isDown && cursors.d.isDown) {
-            player.setVelocity(x = 1.5 * (Math.sqrt(2)), y = -1.5 * (Math.sqrt(2)));
+            player[myPlace].setVelocity(x = 1.5 * (Math.sqrt(2)), y = -1.5 * (Math.sqrt(2)));
         } else if (cursors.down.isDown && cursors.left.isDown || cursors.s.isDown && cursors.q.isDown) {
-            player.setVelocity(x = -1.5 * (Math.sqrt(2)), y = 1.5 * (Math.sqrt(2)));
+            player[myPlace].setVelocity(x = -1.5 * (Math.sqrt(2)), y = 1.5 * (Math.sqrt(2)));
         } else if (cursors.down.isDown && cursors.right.isDown || cursors.s.isDown && cursors.d.isDown) {
-            player.setVelocity(x = 1.5 * (Math.sqrt(2)), y = 1.5 * (Math.sqrt(2)));
+            player[myPlace].setVelocity(x = 1.5 * (Math.sqrt(2)), y = 1.5 * (Math.sqrt(2)));
         } else if (cursors.left.isDown || cursors.q.isDown) {
-            player.setVelocity(x = -3, y);
+            player[myPlace].setVelocity(x = -3, y);
         } else if (cursors.right.isDown || cursors.d.isDown) {
-            player.setVelocity(x = 3, y);
+            player[myPlace].setVelocity(x = 3, y);
         } else if (cursors.up.isDown || cursors.z.isDown) {
-            player.setVelocity(x, y = -3);
+            player[myPlace].setVelocity(x, y = -3);
         } else if (cursors.down.isDown || cursors.s.isDown) {
-            player.setVelocity(x, y = 3);
+            player[myPlace].setVelocity(x, y = 3);
         }
     }
 }

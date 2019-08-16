@@ -25,6 +25,7 @@ class TitleScene extends Phaser.Scene {
         teamBlue.on('pointerdown', () => {
             if (!choosedTeam[0] && !place) {
                 place = 1;
+                myPlace = 0;
                 choosedTeam[0] = 'blue';
                 socket.emit('chooseTeam', {
                     team: 'blue'
@@ -37,6 +38,7 @@ class TitleScene extends Phaser.Scene {
         teamPurple.on('pointerdown', () => {
             if (!choosedTeam[1] && !place) {
                 place = 2;
+                myPlace = 1;
                 choosedTeam[1] = 'purple';
                 socket.emit('chooseTeam', {
                     team: 'purple'
@@ -49,6 +51,7 @@ class TitleScene extends Phaser.Scene {
         teamRed.on('pointerdown', () => {
             if (!choosedTeam[2] && !place) {
                 place = 3;
+                myPlace = 2;
                 choosedTeam[2] = 'red';
                 socket.emit('chooseTeam', {
                     team: 'red'
@@ -61,6 +64,7 @@ class TitleScene extends Phaser.Scene {
         teamYellow.on('pointerdown', () => {
             if (!choosedTeam[3] && !place) {
                 place = 4;
+                myPlace = 3;
                 choosedTeam[3] = 'yellow';
                 socket.emit('chooseTeam', {
                     team: 'yellow'
@@ -107,7 +111,6 @@ class TitleScene extends Phaser.Scene {
             start = this.matter.add.sprite(300, 520, 'start');
             start.setInteractive();
             start.on('pointerdown', () => {
-                console.log('hello')
                 socket.emit('triggerGameScene', true)
             });
             statut = false;

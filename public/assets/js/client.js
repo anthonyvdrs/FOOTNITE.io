@@ -11,15 +11,16 @@ let start;
 let statut = true;
 let triggered = false
 
+let cursors;
+let ball;
+let player = [];
+let myPlace;
+
 socket.on('playersListUpdate', data => {
     choosedTeam = [...data.players];
 })
 
 socket.on('playGameScene', data => {
-    triggered = data;
-    if (triggered) {
-    console.log('hello');
-    }
-    
+    triggered = data;    
 })
 

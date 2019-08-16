@@ -59,9 +59,36 @@ io.on('connection', socket => {
     io.emit('playGameScene', true);
   });
 
+  socket.on('sendingPos0', data => {
+    socket.broadcast.emit('receivePos', {
+      x1: data.posX,
+      y1: data.posY
+    })
+    
+  })
+  socket.on('sendingPos1', data => {
+    socket.broadcast.emit('receivePos', {
+      x2: data.posX,
+      y2: data.posY
+    })
+  })
+  socket.on('sendingPos2', data => {
+    socket.broadcast.emit('receivePos', {
+      x3: data.posX,
+      y3: data.posY
+    })
+  })
+  socket.on('sendingPos3', data => {
+    socket.broadcast.emit('receivePos', {
+      x4: data.posX,
+      y4: data.posY
+    })
+  })
+
   socket.on('disconnect', () => {
     console.log(`user ${socket.id} disconnected`);
     players[socket.place] = false;
   })
 
+  
 })
