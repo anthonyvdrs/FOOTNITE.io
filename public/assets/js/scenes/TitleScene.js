@@ -15,14 +15,62 @@ class TitleScene extends Phaser.Scene {
 
     create() {
         this.add.image(300, 300, 'menu');
-        this.matter.add.sprite(115, 450, 'teamBlue');
-        this.matter.add.sprite(240, 450, 'teamPurple');
-        this.matter.add.sprite(365, 450, 'teamRed');
-        this.matter.add.sprite(490, 450, 'teamYellow');
-        this.matter.add.sprite(300, 520, 'start');
+        const teamBlue = this.matter.add.sprite(115, 450, 'teamBlue');
+        const teamPurple = this.matter.add.sprite(240, 450, 'teamPurple');
+        const teamRed = this.matter.add.sprite(365, 450, 'teamRed');
+        const teamYellow = this.matter.add.sprite(490, 450, 'teamYellow');
+        const start = this.matter.add.sprite(300, 520, 'start');
 
 
+        teamBlue.setInteractive();
+        teamBlue.on('pointerdown', () => {
+            if (!choosedTeam) {
+                choosedTeam = 'blue';
+                socket.emit('chooseTeam', {
+                    team: 'blue'
+                })
+            }
+        });
+
+        teamPurple.setInteractive();
+        teamPurple.on('pointerdown', () => {
+            if (!choosedTeam) {
+                choosedTeam = 'purple';
+                socket.emit('chooseTeam', {
+                    team: 'purple'
+                })
+            }
+        });
+
+        teamRed.setInteractive();
+        teamRed.on('pointerdown', () => {
+            if (!choosedTeam) {
+                choosedTeam = 'red';
+                socket.emit('chooseTeam', {
+                    team: 'red'
+                })
+            }
+        });
+
+        teamYellow.setInteractive();
+        teamYellow.on('pointerdown', () => {
+            if (!choosedTeam) {
+                choosedTeam = 'yellow';
+                socket.emit('chooseTeam', {
+                    team: 'yellow'
+                })
+            }
+        });
+
+        start.setInteractive();
+        start.on('pointerdown', () => {
+
+        });
 
         //this.scene.start("playGame") // LOAD GAMESCENE
+    }
+
+    update() {
+
     }
 }

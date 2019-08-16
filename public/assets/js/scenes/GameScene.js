@@ -59,10 +59,6 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
-        socket.on('player2Position', data => {
-            player2.x = data.posX + 100;
-            player2.y = data.posY;
-        })
         //stop velocity when not pressing buttons
         let x = 0;
         let y = 0;
@@ -87,9 +83,5 @@ class GameScene extends Phaser.Scene {
         } else if (cursors.down.isDown) {
             player.setVelocity(x, y = 3);
         }
-        socket.emit('playerPosition', {
-            posX: player.x,
-            posY: player.y
-        });
     }
 }

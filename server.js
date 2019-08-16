@@ -12,18 +12,26 @@ app.get('/', (req, res) => {
   res.sendFile('public/index.html');
 })
 
+let players = [false, false, false, false];
+
 //socket.io
 io.on('connection', socket => {
   console.log(`user ${socket.id} connected`);
 
-  socket.on('disconnect', () => {
-    console.log(`user ${socket.id} disconnected`);
-  })
   
+
+
+
+
+
   socket.on('playerPosition', data => {
     socket.emit('player2Position', {
       posX: data.posX,
       posY: data.posY
     })
   })
+  socket.on('disconnect', () => {
+    console.log(`user ${socket.id} disconnected`);
+  })
+  
 })
