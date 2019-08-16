@@ -11,9 +11,15 @@ class TitleScene extends Phaser.Scene {
         this.load.image('teamYellow', 'assets/image/yellowButton20.png');
         this.load.image('start', 'assets/image/startButton20.png');
 
+        this.load.audio('menu', 'assets/songs/footnite_menu_theme.mp3');
+
     }
 
     create() {
+        menumusic = this.sound.add('menu');
+        menumusic.loop = true;
+        menumusic.play();
+
         this.add.image(300, 300, 'menu');
         teamBlue = this.matter.add.sprite(115, 450, 'teamBlue');
         teamPurple = this.matter.add.sprite(240, 450, 'teamPurple');
@@ -89,6 +95,7 @@ class TitleScene extends Phaser.Scene {
     update() {
         if (triggered) {
             this.scene.start("playGame");
+            menumusic.stop();
         }
         if (choosedTeam[0]) {
             teamBlue.destroy();
