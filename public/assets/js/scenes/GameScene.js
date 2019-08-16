@@ -1,9 +1,3 @@
-let cursors;
-let ball;
-let player;
-let player2;
-
-
 class GameScene extends Phaser.Scene {
     constructor() {
         super("playGame");
