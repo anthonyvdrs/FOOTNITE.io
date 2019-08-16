@@ -66,4 +66,7 @@ class GameScene extends Phaser.Scene {
             player.setVelocity(x, y = 3);
         }
     }
-}
+}let cursors
+let ball;
+let player;
+let player2;
