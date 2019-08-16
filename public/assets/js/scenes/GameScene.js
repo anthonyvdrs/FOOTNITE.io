@@ -54,8 +54,17 @@ class GameScene extends Phaser.Scene {
 
         player2 = this.matter.add.image(400, 400, 'red');
         player2.setCircle();
-
         cursors = this.input.keyboard.createCursorKeys();
+        cursors = this.input.keyboard.addKeys(
+            {z:Phaser.Input.Keyboard.KeyCodes.Z,
+            s:Phaser.Input.Keyboard.KeyCodes.S,
+            q:Phaser.Input.Keyboard.KeyCodes.Q,
+            d:Phaser.Input.Keyboard.KeyCodes.D,
+            up:Phaser.Input.Keyboard.KeyCodes.UP,
+            down:Phaser.Input.Keyboard.KeyCodes.DOWN,
+            left:Phaser.Input.Keyboard.KeyCodes.LEFT,
+            right:Phaser.Input.Keyboard.KeyCodes.RIGHT});
+        
     }
 
     update() {
@@ -70,23 +79,24 @@ class GameScene extends Phaser.Scene {
 
         //set velocity for each direction
 
-        if (cursors.up.isDown && cursors.left.isDown) {
+        if (cursors.up.isDown && cursors.left.isDown || cursors.z.isDown && cursors.q.isDown) {
             player.setVelocity(x = -1.5 * (Math.sqrt(2)), y = -1.5 * (Math.sqrt(2)));
-        } else if (cursors.up.isDown && cursors.right.isDown) {
+        } else if (cursors.up.isDown && cursors.right.isDown || cursors.z.isDown && cursors.d.isDown) {
             player.setVelocity(x = 1.5 * (Math.sqrt(2)), y = -1.5 * (Math.sqrt(2)));
-        } else if (cursors.down.isDown && cursors.left.isDown) {
+        } else if (cursors.down.isDown && cursors.left.isDown || cursors.s.isDown && cursors.q.isDown) {
             player.setVelocity(x = -1.5 * (Math.sqrt(2)), y = 1.5 * (Math.sqrt(2)));
-        } else if (cursors.down.isDown && cursors.right.isDown) {
+        } else if (cursors.down.isDown && cursors.right.isDown || cursors.s.isDown && cursors.d.isDown) {
             player.setVelocity(x = 1.5 * (Math.sqrt(2)), y = 1.5 * (Math.sqrt(2)));
-        } else if (cursors.left.isDown) {
+        } else if (cursors.left.isDown || cursors.q.isDown) {
             player.setVelocity(x = -3, y);
-        } else if (cursors.right.isDown) {
+        } else if (cursors.right.isDown || cursors.d.isDown) {
             player.setVelocity(x = 3, y);
-        } else if (cursors.up.isDown) {
+        } else if (cursors.up.isDown || cursors.z.isDown) {
             player.setVelocity(x, y = -3);
-        } else if (cursors.down.isDown) {
+        } else if (cursors.down.isDown || cursors.s.isDown) {
             player.setVelocity(x, y = 3);
         }
+
         socket.emit('playerPosition', {
             posX: player.x,
             posY: player.y
