@@ -53,7 +53,7 @@ io.on('connection', socket => {
     socket.emit('playersListUpdate', {
       players: players
     })
-  }, 100);
+  }, 500);
 
   socket.on('triggerGameScene', data => {
     io.emit('playGameScene', true);
