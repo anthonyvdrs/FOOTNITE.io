@@ -1,7 +1,9 @@
 const socket = io();
 
 let place = false;
-let choosedTeam = [false, false, false, false]
+let choosedTeam = [false, false, false, false];
+
+let menumusic;
 
 let teamBlue;
 let teamPurple;

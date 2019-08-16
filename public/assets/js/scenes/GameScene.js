@@ -1,3 +1,9 @@
+let cursors;
+let ball;
+let player;
+let player2;
+
+
 class GameScene extends Phaser.Scene {
     constructor() {
         super("playGame");
@@ -16,9 +22,16 @@ class GameScene extends Phaser.Scene {
         this.load.image('yellow', 'assets/image/playerYellow38x38.png');
 
         this.load.json('shapes', '../assets/goal-shapes.json');
+
+        this.load.audio('party', 'assets/songs/footnite_party_theme.mp3');
     }
 
     create() {
+
+        let music = this.sound.add('party');
+        music.loop = true;
+        music.play();
+        
         const shapes = this.cache.json.get('shapes');
 
         this.add.image(300, 300, 'fond');
